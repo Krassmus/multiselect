@@ -161,8 +161,13 @@ $.widget("ui.multiselect", {
 	},
 	_getOptionNode: function(option) {
 		option = $(option);
-		var node = $('<li class="ui-state-default ui-element" title="'+option.text()+'"><span class="ui-icon"/>'+option.text()+'<a href="#" class="action"><span class="ui-corner-all ui-icon"/></a></li>').hide();
-		node.data('optionLink', option);
+                var node = $('<li class="ui-state-default ui-element"/>')
+	            .attr('title', option.text())
+	            .text(option.text())
+	            .prepend($("<span/>").addClass("ui-icon"))
+	            .append($('<a href="#" class="action"/>').append($('<span class="ui-corner-all ui-icon"/>')))
+                    .hide();
+            	node.data('optionLink', option);
 		return node;
 	},
 	// clones an item with associated data
